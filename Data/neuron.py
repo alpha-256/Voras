@@ -1,18 +1,34 @@
 import re
 from collections import Counter
+from random import choices as rcs
 
+"""
+i copied from line 6 to 10
+"""
 def words(text):
     return re.findall(r'\w+', text.lower())
 
-WORDS = Counter(words(open('notes.txt').read()))
+WORDS = Counter(words(open('big.txt').read()))
 
-def P(word, N=sum(WORDS.values())):
-    "Probability of `word`."
-    return WORDS[word] / N
+answer = []
+probability = []
 
-memory = []
-memoryValue = []
-for word in WORDS :
-    memory.append(word)
+def calculateProbability(probability):
+    counter = 0
+    while counter < len(WORDS.values()):
+        probability.append(round(list(WORDS.values() )[counter] / sum(WORDS.values()), 5))
+        counter += 1
 
-print(WORDS.keys([1]), WORDS.values())
+def showData():
+    counter = 0
+    while counter < len(WORDS.values()):
+        print(probability[counter], "%", "|", "OC:",list(WORDS.values())[counter], list(WORDS.keys())[counter])
+        counter += 1
+
+"""
+based on the probability of each key
+pick key based on "prbability" indexes
+"""
+
+calculateProbability(probability)
+showData()
