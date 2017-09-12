@@ -1,6 +1,5 @@
 import re
 from collections import Counter
-from random import choices as rcs
 
 """
 i copied from line 6 to 10
